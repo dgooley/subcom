@@ -12,8 +12,6 @@ Check for command line arguments. Through args, allow user to specify:
 		Skip menu, start local server, connect. Return error message
 		and quit without starting ncurses if failed.
 
-	- Version
-
 	- Help
 
 	- Enable logging

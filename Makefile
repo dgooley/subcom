@@ -1,24 +1,32 @@
 CC=gcc
 CFLAGS=-g
-LIBS=
+LIBS=-lpthread -lncurses
 SRC=src
 OBJ=obj
 BIN=bin
 
-all: main
+all: mkdirs client server 
 
-$(OBJ)/main.o: $(SRC)/main.c
-	$(CC) -c -o $(OBJ)/main.o $(SRC)/main.c $(CFLAGS)
+$(OBJ)/client.o: $(SRC)/client.c
+	$(CC) -c -o $(OBJ)/client.o $(SRC)/client.c $(CFLAGS)
 
-main: $(OBJ)/main.o
-	$(CC) -o $(BIN)/subcom $(OBJ)/main.o $(CFLAGS) $(LIBS)
+client: $(OBJ)/client.o
+	$(CC) -o $(BIN)/subcom $(OBJ)/client.o $(CFLAGS) $(LIBS)
+
+$(OBJ)/server.o: $(SRC)/server.c
+	$(CC) -o $(OBJ)/server.o $(SRC)/server.c $(CFLAGS)
+
+server: $(OBJ)/server.o
+	$(CC) -o $(BIN)/subcom-server $(OBJ)/server.o $(CFLAGS) $(LIBS)
 
 
+mkdirs:
+	mkdir -p $(OBJ) $(BIN)
 
 clean:
-	rm -f $(OBJ)/*.o $(BIN)/subcom
+	rm -f $(OBJ)/*.o $(BIN)/subcom $(BIN)/subcom-server
 
 run:
 	$(BIN)/subcom
 
-.PHONY: clean run
+.PHONY: clean run mkdirs
