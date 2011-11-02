@@ -1,0 +1,34 @@
+Specifications for subcom client
+Derek Gooley
+Version 0.1
+
+Check for command line arguments. Through args, allow user to specify:
+	- Server address and port
+		Skip menu, connect directly to specified server. Return error
+		message and quit without starting ncurses if connection
+		failed.
+
+	- Local game
+		Skip menu, start local server, connect. Return error message
+		and quit without starting ncurses if failed.
+
+	- Version
+
+	- Help
+
+	- Enable logging
+		Start logging, record events.
+
+If no arguments are specified, present ncurses menu to user
+
+Main menu:
+	- Connect to server
+		Present ncurses dialog for user to specify server address,
+		port. Remain on page and show error if connect failed.
+	- Start local game
+		Start local server, connect client to it. Stay on (or return
+		to) same page if failure, display error message.
+	- Settings
+		Present dialog for adjusting game settings.
+
+Each page will allow user to return to main menu.
